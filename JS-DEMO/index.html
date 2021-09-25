@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body onload="initialSetter()">
+    <h1>JS Demo</h1>
+
+    <!-- Inline JavaScript -->
+    <button type="button" onclick="console.log('clicked');">Click Me to see it in console</button>
+
+    <button type="button" onclick="alert('Clicked the button');">Click Me-- to see the alert</button>
+
+    <button type="button" onclick="javascript: alert('Clicked the button');">Another alert</button>
+
+    <br>
+    <a href="/index.html" onclick="return fase;">Click Me-- Link will not work</a>
+
+    <hr>
+    <button type="button" onclick="handleSendIt()">Send It</button>
+    <button type="button" onclick="handleDispatchIt()">Send It --- Here</button>
+
+    <hr>
+    <button type="button" id="dispatchBtn" onclick="handleDispatchIt(event)">Dispatch </button>
+    <button type="button" id="dispatchBtn2">Dispatch It again </button>
+
+    <hr>
+    <div id="domDemoArea">
+        <!-- TODO:
+        create a button element using createElement.
+        class="redBg"
+        button label = 'Submit'
+        append the above button inside div with an id 'domDemoArea'
+        -->
+        <button onclick="handleAddButton()">Add Button ( + )</button>
+
+    </div>
+
+    <hr>
+    <!-- TODO: Handle onmouseover event and make the desc div visible also change the button label to 'Hide'.
+        onmouseleave -- hide the div and change the label to 'Show'-->
+    <div id="eventDemoArea">
+        <button type="button" onmouseover="handleMouseover(event)" onmouseleave="handleMouseleave(event)">
+            Show
+        </button>
+        <div id="desc">
+            <!-- Hide this div by default -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </div>
+     </div>
+
+
+
+
+
+    <!-- Internal JavaScript/ place it before ending body tag always -->
+    <script>
+
+        console.log('Internal Scripting Works');
+
+        function handleSendIt() { //event handler fn
+            //function defn
+            alert('clicked');
+        }
+
+    </script>
+
+    <!-- External JavaScript-->
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>

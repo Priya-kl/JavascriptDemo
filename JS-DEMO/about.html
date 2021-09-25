@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Drag and Drop</title>
+
+</head>
+
+<body>
+    <h1>About</h1>
+    <button id="dragDispatch" type="button" onclick="handleDragDispatchIt()">Dispatch It</button>
+    <div>
+
+        <img id="img1" src="./assets/images/insta.png" alt="insta" width="100" draggable="true"
+            ondragstart="handleDrag(event)">
+
+    </div>
+    <div id="dropDispatch" style="border:solid 1px red; width:200px; height: 200px;" ondragover="handleDragOver(event)"
+        ondrop="handleDrop(event)">
+        Drop here
+    </div>
+<h2>Geo Location</h2>
+<button id="locate" type="buttoon" onclick="handleLocateMe()">Locate ME
+</button>
+
+
+    <!-- External JavaScript-->
+    <!-- <script src="./scripts/main.js"></script> -->
+
+    <!-- /* About page */ -->
+    <script>
+
+        //Drag and drop related
+
+        function handleDrag(event) {
+            console.log(event);//event.target is the element being dragged
+            event.dataTransfer.setData('xyz', event.target.id)
+            console.log('Dragging...');
+        }
+        //upon dragging
+        function handleDragOver(event) {
+            console.log(event);
+            //Allow Drop
+            //by preventing the default nature of the event
+            event.preventDefault();
+        }
+
+        function handleDrop(event) {
+            console.log(event);// event.target is the dropped region
+            event.preventDefault();
+            console.log('Dropping inside the div');
+
+            var draggedItem = event.dataTransfer.getData('xyz');
+            console.log(draggedItem);
+            event.target.appendChild(document.getElementById(draggedItem));
+        }
+    
+        function handleLocateMe(){
+            //check whethere browser is supporting to geolocation
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showLocation, locationAccessDenied);
+            }else{
+                alert('Browser does not support geolocation');
+            }
+        }
+
+        // Geolocation related
+        function showLocation(position){
+            console.log(position);
+            console.log('you are in '+ position.coords.latitude + ' and '+ position.coords.longitude);
+            //try implementing
+            //navigator.geolocation.watchPosition(watchingPosition, watchingError);
+            //clear watch
+            //navigator.geolocation.clearWatch(watchingPosition);
+        }
+
+        function locationAccessDenied(){
+            alert('location access denied');
+        }
+
+        if(Storage){
+            localStorage.setItem('phone', `{off: 123, res: 24244}`);
+        }
+    </script>
+
+</body>
+
+</html>
